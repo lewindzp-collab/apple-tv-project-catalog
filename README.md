@@ -1,6 +1,6 @@
 # Apple TV Project Catalog
 
-An original, Apple TV-inspired browsing experience for a curated catalog of movies and series.
+An original, Apple TV-inspired product and entertainment experience for a curated catalog of movies and series.
 
 ## Features
 
