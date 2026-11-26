@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <title>Apple TV Projects</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar" aria-label="Primary">
+    <button class="brand" id="brandButton" aria-label="Go to Watch Now">Projects</button>
+    <nav class="tabs" aria-label="Sections">
+      <button class="tab active" data-view="watch">Watch Now</button>
+      <button class="tab" data-view="movies">Movies</button>
+      <button class="tab" data-view="shows">TV Shows</button>
+      <button class="tab" data-view="library">Library</button>
+      <button class="tab" data-view="store">Store</button>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-button" id="searchButton" aria-label="Search">⌕</button>
+      <button class="avatar" id="profileButton" aria-label="Profiles">A</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="hero" id="hero" aria-live="polite"></section>
+    <section id="content"></section>
+  </main>
+
+  <dialog id="searchDialog" class="dialog search-dialog">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">Search</p>
+        <h2>Find something great</h2>
+      </div>
+      <button class="close-button" data-close="searchDialog" aria-label="Close">×</button>
+    </div>
+    <label class="search-field">
+      <span aria-hidden="true">⌕</span>
+      <input id="searchInput" type="search" placeholder="Movies, shows, people">
+    </label>
+    <div id="searchResults" class="search-results"></div>
+  </dialog>
+
+  <dialog id="detailDialog" class="dialog detail-dialog">
+    <button class="close-button detail-close" data-close="detailDialog" aria-label="Close">×</button>
+    <div id="detailContent"></div>
+  </dialog>
+
+  <dialog id="profileDialog" class="dialog profile-dialog">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">Who’s Watching?</p>
+        <h2>Profiles</h2>
+      </div>
+      <button class="close-button" data-close="profileDialog" aria-label="Close">×</button>
+    </div>
+    <div class="profiles">
+      <button class="profile"><span class="profile-orb">A</span><strong>Alex</strong></button>
+      <button class="profile"><span class="profile-orb warm">M</span><strong>Kids</strong></button>
+      <button class="profile"><span class="profile-orb add">+</span><strong>Add Profile</strong></button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
