@@ -284,27 +284,27 @@ function toast(msg) {
 
 function navMarkup() {
   const links = [
-    ['home', 'Home'], ['shows', 'TV Shows'], ['movies', 'Movies'],
-    ['sports', 'Sports'], ['library', 'Library']
+    ['search', 'Search', '⌕'], ['home', 'Home', '⌂'], ['shows', 'Projects TV', 'tv'],
+    ['sports', 'Sports', '⌁'], ['store', 'Store', '▣'], ['library', 'Library', '▰']
   ];
-  return `<header class="nav">
-    <button class="nav__brand" data-focusable data-action="page" data-page="home" aria-label="Apple TV home">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.03-2.4 1.96-3.56 2.05-3.62-1.12-1.64-2.85-1.86-3.47-1.88-1.48-.15-2.88.87-3.63.87-.75 0-1.9-.85-3.13-.83-1.6.02-3.09.93-3.91 2.36-1.67 2.9-.43 7.18 1.2 9.53.8 1.15 1.75 2.44 3 2.39 1.2-.05 1.66-.78 3.11-.78 1.45 0 1.86.78 3.13.75 1.3-.02 2.12-1.17 2.9-2.33.92-1.33 1.3-2.62 1.32-2.69-.03-.01-2.53-.97-2.57-3.77zM14.79 5.94c.66-.8 1.11-1.92.99-3.03-.96.04-2.13.64-2.82 1.44-.62.72-1.16 1.87-1.02 2.96 1.07.08 2.17-.54 2.85-1.37z"/></svg>
-      <span>tv</span>
+  return `<aside class="nav sidebar-nav">
+    <button class="sidebar-profile" data-focusable data-action="open-profiles" aria-label="Switch profile">
+      <span class="sidebar-profile__avatar" style="background:${profile().color}">${profile().initials}</span>
+      <strong>${esc(profile().name)}</strong>
+      <time>9:41 AM</time>
     </button>
     <nav class="nav__links" aria-label="Main">
-      ${links.map(([p, label]) => `<button class="nav__link ${state.page === p ? 'is-active' : ''}" data-focusable data-action="page" data-page="${p}">${label}</button>`).join('')}
+      ${links.map(([p, label, glyph]) => {
+        const iconText = p === 'shows' ? '<span class="sidebar-tv">tv</span>' : `<span class="sidebar-glyph">${glyph}</span>`;
+        return `<button class="nav__link ${state.page === p ? 'is-active' : ''}" data-focusable data-action="page" data-page="${p}">
+          ${iconText}<span>${label}</span>
+        </button>`;
+      }).join('')}
     </nav>
-    <div class="nav__spacer"></div>
-    <label class="nav__search">
-      ${icon('search')}
-      <input id="navSearch" type="search" placeholder="Search shows, movies, sports" value="${esc(state.query)}" autocomplete="off" aria-label="Search">
-    </label>
-    <button class="nav__icon" data-focusable data-action="focus-search" aria-label="Search">${icon('search')}</button>
-    <button class="nav__icon" data-focusable data-action="open-cc" aria-label="Control Center">${icon('sliders')}</button>
-    <button class="nav__signin" data-focusable data-action="open-profiles">Sign In</button>
-    <button class="nav__avatar" style="background:${profile().color}" data-focusable data-action="open-profiles" aria-label="Switch profile">${profile().initials}</button>
-  </header>`;
+    <p class="sidebar-section">Channels &amp; Apps</p>
+    <button class="sidebar-channel" data-focusable data-action="toast" data-message="HBO Max"><span class="channel-mark channel-mark--hbo">HBO</span><span>HBO Max</span></button>
+    <button class="sidebar-channel" data-focusable data-action="toast" data-message="Peacock"><span class="channel-mark channel-mark--peacock">P</span><span>Peacock</span></button>
+  </aside>`;
 }
 
 function helperMarkup() {
@@ -420,6 +420,7 @@ function browseMarkup() {
     shows: { title: 'TV Shows', sub: 'Stories that stay with you, episode after episode.', filter: t => t.seasons > 1 },
     movies: { title: 'Movies', sub: 'One sitting. A whole world.', filter: t => t.seasons === 1 },
     sports: { title: 'Sports', sub: 'Live energy, exclusive stories, and the moments that matter.', filter: t => ['stage', 'signal2', 'coast', 'little'].includes(t.id) },
+    store: { title: 'Store', sub: 'Movies and shows, ready to buy or rent.', filter: () => true },
     library: { title: 'Your Library', sub: 'Everything you saved, all in one place.', filter: t => inList(t.id) }
   };
   const cfg = map[p] || map.shows;
@@ -800,6 +801,7 @@ function handleAction(el, e) {
   const a = el.dataset.action;
   switch (a) {
     case 'page': goPage(el.dataset.page); break;
+    case 'toast': toast(el.dataset.message); break;
     case 'focus-search': {
       state.page = 'search'; render();
       const input = document.getElementById('pageSearch');
