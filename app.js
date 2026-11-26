@@ -3,7 +3,7 @@ const features = [
     title: "The Archive",
     type: "New series",
     meta: "TV-MA · Drama · Mystery",
-    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=2200&q=92"
+    image: "assets/apple-tv-session.png?v=exact1"
   },
   {
     title: "Severance",
