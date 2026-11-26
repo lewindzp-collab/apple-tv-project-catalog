@@ -85,6 +85,9 @@ document.querySelectorAll(".nav-row").forEach(button => {
   });
 });
 
+document.querySelectorAll(".nav-row").forEach(row => row.classList.remove("active"));
+document.querySelector('.nav-row[data-nav="TV"]')?.classList.add("active");
+
 const searchDialog = document.querySelector("#searchDialog");
 const profileDialog = document.querySelector("#profileDialog");
 document.querySelector("#profileButton").addEventListener("click", () => profileDialog.showModal());
