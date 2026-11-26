@@ -1,149 +1,86 @@
 <!doctype html>
 <!--
-THESIS: A premium, cinematic project-console product experience with Apple-product restraint:
-oversized type, near-perfect spacing, immersive media, and bright material contrast.
-OWN-WORLD: White and soft gray canvas, black cinema sections, restrained cobalt actions,
-precise SF-like typography, and one sculptural hardware-style hero.
-STORY: A visitor understands the experience, sees its cinematic and smart-home capabilities,
-then explores content and chooses to buy or start watching.
-FIRST VIEWPORT: A slim local nav above a white centered hero, with a product visualization
-and the line “Stunning picture. Stunningly simple.”
-FORM: Apple-style product editorial with a fixed local nav, centered hero, immersive feature bands,
-and gallery cards.
+THESIS: A cinematic Apple-TV-session style interface: a calm fixed sidebar, one dominant artwork
+canvas, and a close-set content rail along the bottom.
+OWN-WORLD: Deep navy glass, luminous photographic art, crisp white type, compact profile and
+navigation controls, and neutral 16:9 posters.
+STORY: The user arrives in the largest feature, can move between media destinations, search,
+switch profile, and continue through the row beneath.
+FIRST VIEWPORT: Sidebar at left, feature artwork filling the right, title copy over the lower
+left, and one poster rail crossing the bottom.
+FORM: TV app browse shell with persistent destination rail and a hero-led playback canvas.
 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f5f7">
-  <title>Project 4K</title>
+  <meta name="theme-color" content="#071d36">
+  <title>TV Projects</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="global-nav" aria-label="Global">
-    <a class="wordmark" href="#" aria-label="Project home"><span class="mark">P</span></a>
-    <a href="#experience">Experience</a>
-    <a href="#entertainment">Entertainment</a>
-    <a href="#smart-home">Smart Home</a>
-    <button class="nav-search" id="searchButton" aria-label="Search">⌕</button>
-    <button class="nav-icon" id="profileButton" aria-label="Profile">A</button>
-  </nav>
+  <aside class="sidebar" id="sidebar">
+    <button class="profile" id="profileButton" aria-label="Switch profile">
+      <span class="profile-avatar">R</span>
+      <strong>Rody</strong>
+      <time>9:41 AM</time>
+    </button>
 
-  <nav class="local-nav" aria-label="Project 4K">
-    <strong>Project 4K</strong>
-    <button class="buy-button" data-toast="Buy flow opened">Buy</button>
-  </nav>
+    <nav class="main-nav" aria-label="Main">
+      <button class="nav-row" data-nav="Search"><span class="nav-icon">⌕</span><span>Search</span></button>
+      <button class="nav-row" data-nav="Home"><span class="nav-icon">⌂</span><span>Home</span></button>
+      <button class="nav-row active" data-nav="TV"><span class="tv-mark">tv</span><span>Projects TV</span></button>
+      <button class="nav-row" data-nav="Sports"><span class="nav-icon">⌁</span><span>Sports</span></button>
+      <button class="nav-row" data-nav="Store"><span class="nav-icon">▣</span><span>Store</span></button>
+      <button class="nav-row" data-nav="Library"><span class="nav-icon">▰</span><span>Library</span></button>
+    </nav>
 
-  <main>
-    <section class="hero">
-      <div class="hero-media" aria-label="Project 4K console and remote">
-        <div class="stage">
-          <div class="console"><span class="console-mark">P</span></div>
-          <div class="remote">
-            <span class="remote-track"></span>
-            <span class="remote-dot"></span>
-            <span class="remote-menu">●</span>
-          </div>
-        </div>
-      </div>
+    <p class="side-label">Channels &amp; Apps</p>
+    <nav class="channel-nav" aria-label="Channels">
+      <button class="channel-row"><span class="channel-logo coral">HBO</span><span>HBO Max</span></button>
+      <button class="channel-row"><span class="channel-logo peach">P</span><span>Peacock</span></button>
+    </nav>
+  </aside>
+
+  <main class="stage" id="stage">
+    <section class="hero" id="hero">
+      <img id="heroImage" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=90" alt="">
+      <div class="hero-shade"></div>
       <div class="hero-copy">
-        <p class="product-name">Project 4K</p>
-        <h1>Stunning picture.<br>Stunningly simple.</h1>
-        <p class="lede">The complete cinematic experience, from movies and shows to games and smart home control. All in one beautifully simple box.</p>
-        <div class="hero-actions">
-          <button class="primary-link" data-toast="Buy flow opened">Buy</button>
-          <button class="text-link" data-dialog="detail">Learn more</button>
+        <p id="heroType">New series</p>
+        <h1 id="heroTitle">The Archive</h1>
+        <p id="heroMeta">TV-MA <span>Drama · Mystery</span></p>
+        <div class="hero-controls">
+          <button id="playButton" aria-label="Play">▶</button>
+          <button id="nextButton" aria-label="Next feature">→</button>
         </div>
       </div>
+      <div class="dots" id="heroDots" aria-label="Featured item"></div>
     </section>
 
-    <section class="feature-band" id="experience">
-      <div class="feature-heading">
-        <p>Entertainment</p>
-        <h2>Cinematic.<br>In every sense.</h2>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card picture-card">
-          <div class="picture-art">
-            <div class="sun"></div>
-            <div class="ridge ridge-one"></div>
-            <div class="ridge ridge-two"></div>
-          </div>
-          <h3>True-to-life picture.</h3>
-          <p>4K detail and high dynamic range make every frame feel vivid and dimensional.</p>
-        </article>
-        <article class="feature-card sound-card">
-          <div class="sound-art"><span></span><span></span><span></span><span></span><span></span></div>
-          <h3>Sound that surrounds.</h3>
-          <p>Immersive spatial audio places voices, music and effects in the room around you.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="siri-band">
-      <p>Project AI</p>
-      <h2>More helpful.<br>More powerful.</h2>
-      <div class="prompt-row" id="promptRow">
-        <button>Find adventure movies for tonight</button>
-        <button>Play the show Mia recommended</button>
-        <button>Where was this filmed?</button>
-      </div>
-    </section>
-
-    <section class="entertainment-band" id="entertainment">
-      <div class="feature-heading">
-        <p>Everything you love</p>
-        <h2>The best seat<br>in the house.</h2>
-      </div>
-      <div class="gallery" id="gallery">
-        <button class="gallery-card" data-title="Atlas" style="--art:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85')">
-          <span>Drama</span><strong>Atlas</strong>
-        </button>
-        <button class="gallery-card" data-title="Lumen" style="--art:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1000&q=85')">
-          <span>Sci-Fi</span><strong>Lumen</strong>
-        </button>
-        <button class="gallery-card" data-title="Harbour City" style="--art:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=85')">
-          <span>Crime</span><strong>Harbour City</strong>
-        </button>
-        <button class="gallery-card" data-title="Velocity" style="--art:url('https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=85')">
-          <span>Sport</span><strong>Velocity</strong>
-        </button>
-      </div>
-    </section>
-
-    <section class="together-band" id="smart-home">
-      <div class="feature-heading">
-        <p>Better together</p>
-        <h2>A home full of possibilities.</h2>
-      </div>
-      <div class="together-grid">
-        <article><span class="device-icon">⌂</span><h3>Smart home</h3><p>Control lights, climate and accessories from one familiar place.</p></article>
-        <article><span class="device-icon">◉</span><h3>FaceTime</h3><p>Turn the television into a more personal conversation.</p></article>
-        <article><span class="device-icon">⌁</span><h3>AirPlay</h3><p>Share photos, video and music from every screen in the home.</p></article>
-        <article><span class="device-icon">◌</span><h3>Find your remote</h3><p>Ask Project to find the remote and let it make a sound.</p></article>
-      </div>
+    <section class="rail" aria-label="Continue watching">
+      <div class="rail-track" id="railTrack"></div>
     </section>
   </main>
 
-  <dialog id="detailDialog" class="dialog">
-    <button class="close-button" data-close aria-label="Close">×</button>
-    <p class="dialog-kicker">Project 4K</p>
-    <h2>Everything looks better.</h2>
-    <p>One elegant box brings premium picture, spatial audio, voice control and a unified media library to the biggest screen in the home.</p>
-    <button class="primary-link" data-toast="Buy flow opened">Buy Project 4K</button>
-  </dialog>
-
-  <dialog id="searchDialog" class="dialog search-dialog">
-    <div class="dialog-head"><h2>Search</h2><button class="close-button" data-close aria-label="Close">×</button></div>
+  <dialog id="searchDialog" class="dialog">
+    <div class="dialog-head">
+      <h2>Search</h2>
+      <button class="close-button" data-close aria-label="Close">×</button>
+    </div>
     <input id="searchInput" type="search" placeholder="Movies, shows, people" aria-label="Search">
     <div id="searchResults"></div>
   </dialog>
 
   <dialog id="profileDialog" class="dialog profile-dialog">
-    <div class="dialog-head"><h2>Profiles</h2><button class="close-button" data-close aria-label="Close">×</button></div>
+    <div class="dialog-head">
+      <h2>Who's Watching?</h2>
+      <button class="close-button" data-close aria-label="Close">×</button>
+    </div>
     <div class="profiles">
-      <button><span>A</span><strong>Alex</strong></button>
+      <button><span>R</span><strong>Rody</strong></button>
       <button><span>M</span><strong>Kids</strong></button>
+      <button><span>+</span><strong>Add Profile</strong></button>
     </div>
   </dialog>
 
